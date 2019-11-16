@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     private void IncorrectPos()
     {
         OnIncorrectPos();
+        hinput.anyGamepad.Vibrate();
         Debug.Log("<color=red> Incorrect Pos </color>");
         l_comboManager.YouFailed();
         CleanPos();
