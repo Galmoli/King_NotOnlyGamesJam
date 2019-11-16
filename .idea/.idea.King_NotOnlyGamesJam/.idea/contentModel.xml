@@ -6,6 +6,31 @@
     <e p="C:\Users\iastr\Documents\GitHub\King_NotOnlyGamesJam" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="hinput" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="Gamepad" t="Include">
+              <e p="hAnyInput.cs" t="Include" />
+              <e p="hAxis.cs" t="Include" />
+              <e p="hButton.cs" t="Include" />
+              <e p="hDirection.cs" t="Include" />
+              <e p="hGamepad.cs" t="Include" />
+              <e p="hPressable.cs" t="Include" />
+              <e p="hStick.cs" t="Include" />
+              <e p="hStickPressedZone.cs" t="Include" />
+              <e p="hTrigger.cs" t="Include" />
+              <e p="hVibration.cs" t="Include" />
+            </e>
+            <e p="Setup" t="Include">
+              <e p="hSetUp.cs" t="Include" />
+            </e>
+            <e p="Utils" t="Include">
+              <e p="hinput.cs" t="Include" />
+              <e p="hSettings.cs" t="Include" />
+              <e p="hUpdater.cs" t="Include" />
+              <e p="hUtils.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Lava shader" t="Include">
           <e p="Lava shader" t="Include">
             <e p="Lava.shader" t="Include" />
