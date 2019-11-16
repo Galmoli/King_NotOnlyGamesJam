@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private bool player0Checked;
     private bool player1Checked;
 
+    public ComboManager l_comboManager;
+
     public static GameManager Instance
     {
         get
@@ -17,6 +19,11 @@ public class GameManager : MonoBehaviour
             if (instance == null) instance = FindObjectOfType<GameManager>();
             return instance;
         }
+    }
+
+    private void Start()
+    {
+        l_comboManager = GetComponent<ComboManager>();
     }
 
     public void SetPlayer0State(bool state)
@@ -43,12 +50,14 @@ public class GameManager : MonoBehaviour
     private void CorrectPos()
     {
         Debug.Log("<color=green> Correct Pos </color>");
+        l_comboManager.MoreCombos();
         CleanPos();
     }
 
     private void IncorrectPos()
     {
         Debug.Log("<color=red> Incorrect Pos </color>");
+        l_comboManager.YouFailed();
         CleanPos();
     }
 

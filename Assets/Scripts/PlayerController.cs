@@ -43,15 +43,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxis("Joystick1Vertical") > 0.1f) SetArrowDir(player0CurrentArrow, ArrowDirection.Up);
-        if(Input.GetAxis("Joystick1Vertical") < -0.1f) SetArrowDir(player0CurrentArrow, ArrowDirection.Down);
-        if(Input.GetAxis("Joystick1Horizontal") > 0.1f) SetArrowDir(player0CurrentArrow, ArrowDirection.Right);
-        if(Input.GetAxis("Joystick1Horizontal") < -0.1f) SetArrowDir(player0CurrentArrow, ArrowDirection.Left);
+        if(Input.GetKey(KeyCode.W)) SetArrowDir(player0CurrentArrow, ArrowDirection.Up);
+        if(Input.GetKey(KeyCode.S)) SetArrowDir(player0CurrentArrow, ArrowDirection.Down);
+        if(Input.GetKey(KeyCode.D)) SetArrowDir(player0CurrentArrow, ArrowDirection.Right);
+        if(Input.GetKey(KeyCode.A)) SetArrowDir(player0CurrentArrow, ArrowDirection.Left);
         
-        if(Input.GetAxis("Joystick2Vertical") > 0.1f) SetArrowDir(player1CurrentArrow, ArrowDirection.Up);
-        if(Input.GetAxis("Joystick2Vertical") < -0.1f) SetArrowDir(player1CurrentArrow, ArrowDirection.Down);
-        if(Input.GetAxis("Joystick2Horizontal") > 0.1f) SetArrowDir(player1CurrentArrow, ArrowDirection.Right);
-        if(Input.GetAxis("Joystick2Horizontal") < -0.1f) SetArrowDir(player1CurrentArrow, ArrowDirection.Left);
+        if(Input.GetKey(KeyCode.UpArrow)) SetArrowDir(player1CurrentArrow, ArrowDirection.Up);
+        if(Input.GetKey(KeyCode.DownArrow)) SetArrowDir(player1CurrentArrow, ArrowDirection.Down);
+        if(Input.GetKey(KeyCode.RightArrow)) SetArrowDir(player1CurrentArrow, ArrowDirection.Right);
+        if(Input.GetKey(KeyCode.LeftArrow)) SetArrowDir(player1CurrentArrow, ArrowDirection.Left);
     }
     
     private void TwoPlayers()
