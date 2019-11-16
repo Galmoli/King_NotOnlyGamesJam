@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ColorCalibrator : MonoBehaviour
@@ -22,6 +23,8 @@ public class ColorCalibrator : MonoBehaviour
     {
         defaultBlue = blueFront;
         defaultRed = redFront;
+        player1Confirmed = false;
+        player2Confirmed = false;
     }
 
     // Update is called once per frame
@@ -63,13 +66,17 @@ public class ColorCalibrator : MonoBehaviour
         if (Input.GetButtonDown("A button 1"))
         {
             player1Confirmed = true;
-            PlayerPrefs.SetFloat("Blue", blueFront.r);
+            PlayerPrefs.SetFloat("BlueR", blueFront.r);
+            PlayerPrefs.SetFloat("BlueG", blueFront.g);
+            PlayerPrefs.SetFloat("BlueB", blueFront.b);
             if (player2Confirmed) LoadGamePlay();
         }
         if (Input.GetButtonDown("A button 2"))
         {
             player2Confirmed = true;
-            PlayerPrefs.SetFloat("Red", blueFront.b);
+            PlayerPrefs.SetFloat("RedR", blueFront.r);
+            PlayerPrefs.SetFloat("RedG", blueFront.g);
+            PlayerPrefs.SetFloat("RedB", blueFront.b);
             if(player1Confirmed) LoadGamePlay();
         }
 
@@ -79,6 +86,6 @@ public class ColorCalibrator : MonoBehaviour
 
     private void LoadGamePlay()
     {
-        
+        SceneManager.LoadScene(1);
     }
 }
