@@ -13,6 +13,9 @@ public class ColorCalibrator : MonoBehaviour
     [SerializeField] private Image redFrontFill;
     private Color defaultBlue;
     private Color defaultRed;
+
+    private bool player1Confirmed;
+    private bool player2Confirmed;
     
     // Start is called before the first frame update
     void Start()
@@ -57,7 +60,25 @@ public class ColorCalibrator : MonoBehaviour
             redFrontFill.fillAmount = 0.5f;
         }
 
+        if (Input.GetButtonDown("A button 1"))
+        {
+            player1Confirmed = true;
+            PlayerPrefs.SetFloat("Blue", blueFront.r);
+            if (player2Confirmed) LoadGamePlay();
+        }
+        if (Input.GetButtonDown("A button 2"))
+        {
+            player2Confirmed = true;
+            PlayerPrefs.SetFloat("Red", blueFront.b);
+            if(player1Confirmed) LoadGamePlay();
+        }
+
         blueFrontImg.color = blueFront;
         redFrontImg.color = redFront;
+    }
+
+    private void LoadGamePlay()
+    {
+        
     }
 }
