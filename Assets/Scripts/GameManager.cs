@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
     private bool player1PosCorrect;
     private bool player0Checked;
     private bool player1Checked;
+    public Color blueBK;
+    public Color blueColor;
+    public Color redBK;
+    public Color redColor;
+
+    public ComboManager l_comboManager;
 
     public static GameManager Instance
     {
@@ -17,6 +23,12 @@ public class GameManager : MonoBehaviour
             if (instance == null) instance = FindObjectOfType<GameManager>();
             return instance;
         }
+    }
+
+    private void Start()
+    {
+        l_comboManager = GetComponent<ComboManager>();
+        //GetColors();
     }
 
     public void SetPlayer0State(bool state)
@@ -43,12 +55,14 @@ public class GameManager : MonoBehaviour
     private void CorrectPos()
     {
         Debug.Log("<color=green> Correct Pos </color>");
+        l_comboManager.MoreCombos();
         CleanPos();
     }
 
     private void IncorrectPos()
     {
         Debug.Log("<color=red> Incorrect Pos </color>");
+        l_comboManager.YouFailed();
         CleanPos();
     }
 
@@ -56,5 +70,11 @@ public class GameManager : MonoBehaviour
     {
         player0Checked = false;
         player1Checked = false;
+    }
+
+    private void GetColors()
+    {
+        blueColor = new Color(PlayerPrefs.GetFloat("BlueR"), PlayerPrefs.GetFloat("BlueG"), PlayerPrefs.GetFloat("BlueB"), 1);
+        redColor = new Color(PlayerPrefs.GetFloat("RedR"), PlayerPrefs.GetFloat("RedG"), PlayerPrefs.GetFloat("RedB"), 1);
     }
 }

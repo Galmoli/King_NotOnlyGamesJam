@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Arrow : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private GameObject arrow;
     [SerializeField] private PlayerController.ArrowDirection direction;
     private bool onMove;
     private int playerInt;
@@ -70,5 +72,15 @@ public class Arrow : MonoBehaviour
     public void SetPlayer(int n)
     {
         playerInt = n;
+        if (n == 0) //Blue
+        {
+            GetComponent<Image>().color = GameManager.Instance.blueBK;
+            arrow.GetComponent<Image>().color = GameManager.Instance.blueColor;
+        }
+        else //Red
+        {
+            GetComponent<Image>().color = GameManager.Instance.redBK;
+            arrow.GetComponent<Image>().color = GameManager.Instance.redColor;
+        }
     }
 }
