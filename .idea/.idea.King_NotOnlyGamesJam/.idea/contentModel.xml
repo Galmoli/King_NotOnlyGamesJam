@@ -9,7 +9,10 @@
         <e p="Scripts" t="Include">
           <e p="Arrow.cs" t="Include" />
           <e p="ColorCalibrator.cs" t="Include" />
+          <e p="ComboManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="InputManagerTests.cs" t="Include" />
+          <e p="MusicManager.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="SpawnerController.cs" t="Include" />
         </e>
