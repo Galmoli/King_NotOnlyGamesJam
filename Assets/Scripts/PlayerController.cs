@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
         if(Input.GetAxis("Joystick2Vertical") < -0.1f) SetArrowDir(player1CurrentArrow, ArrowDirection.Down);
         if(Input.GetAxis("Joystick2Horizontal") > 0.1f) SetArrowDir(player1CurrentArrow, ArrowDirection.Right);
         if(Input.GetAxis("Joystick2Horizontal") < -0.1f) SetArrowDir(player1CurrentArrow, ArrowDirection.Left);
+        
+        if(Input.GetKeyDown("Y button 1")) Debug.Log("Default");
     }
     
     private void TwoPlayers()
