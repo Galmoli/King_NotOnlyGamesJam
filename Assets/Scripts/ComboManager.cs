@@ -25,6 +25,14 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private float dampingSpeed = 1.0f;
     Vector3 initialPosition;
 
+    //Particles
+    [SerializeField] public ParticleSystem BaseCelebrationL; //Es podrien instanciar les grans amb els combos
+    [SerializeField] public ParticleSystem BaseCelebrationR;
+    [SerializeField] public ParticleSystem MidCelebrationL;
+    [SerializeField] public ParticleSystem MidCelebrationR;
+    [SerializeField] public ParticleSystem LargeCelebrationL;
+    [SerializeField] public ParticleSystem LargeCelebrationR;
+
     private void Awake()
     {
         initialPosition = cameraTransform.localPosition;
