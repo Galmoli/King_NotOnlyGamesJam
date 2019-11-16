@@ -83,7 +83,7 @@ Material:
     - _OcclusionStrength: 1
     - _Outlinefresnel: 1.61
     - _Parallax: 0.02
-    - _Relief: 0.76
+    - _Relief: 0.87
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
