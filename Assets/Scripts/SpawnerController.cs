@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SpawnerController : MonoBehaviour
 {
-    [SerializeField] private int numOfOrderCubes = 2;
+    [SerializeField] private Transform canvasParent;
+    [SerializeField] private int numOfArrows = 2;
     [SerializeField] private float initialSpawnTime = 4;
     [SerializeField] private float minSpawnTime = 2;
     [SerializeField] private float spawnTimeDecrement = 0.1f;
+    [SerializeField] private int offsetBetweenArrows = 33;
 
     //Prefabs
     [SerializeField] private GameObject upArrow;
@@ -16,9 +19,9 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] private GameObject leftArrow;
     
     //SpawnPositions
-    [SerializeField] private Transform[]  positionsVector;
+    [SerializeField] private RectTransform[]  positionsVector;
 
-    private GameObject[] orderCubeVector;
+    private GameObject[] arrowVector;
     
     private float currentTime;
     private float spawnTime;
@@ -26,7 +29,7 @@ public class SpawnerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        orderCubeVector = new GameObject[numOfOrderCubes];
+        arrowVector = new GameObject[numOfArrows];
         spawnTime = initialSpawnTime;
         currentTime = 0;
     }
@@ -36,7 +39,7 @@ public class SpawnerController : MonoBehaviour
     {
         if (currentTime >= spawnTime)
         {
-            GetNextCubeOrderVector();
+            GetNextArrowVector();
             SpawnOrder();
             currentTime = 0;
             if(spawnTime > minSpawnTime + spawnTimeDecrement) spawnTime -= spawnTimeDecrement;
@@ -46,70 +49,70 @@ public class SpawnerController : MonoBehaviour
 
     private void SpawnOrder()
     {
-        foreach (var go in orderCubeVector)
+        foreach (var go in arrowVector)
         {
             go.SetActive(true);
         }
     }
 
-    private void GetNextCubeOrderVector()
+    private void GetNextArrowVector()
     {
-        GameObject[] vector = new GameObject[numOfOrderCubes];
+        GameObject[] vector = new GameObject[numOfArrows];
 
-        for (int i = 0; i < orderCubeVector.Length; i++)
+        for (int i = 0; i < arrowVector.Length; i++)
         {
             int randomN = Random.Range(0, 4);
             switch (randomN)
             {
                 case 0:
                 {
-                    vector[i] = Instantiate(upArrow, transform);
+                    vector[i] = Instantiate(upArrow, canvasParent);
                     break;
                 }
                 case 1:
                 {
-                    vector[i] = Instantiate(downArrow, transform);
+                    vector[i] = Instantiate(downArrow, canvasParent);
                     break;
                 }
                 case 2:
                 {
-                    vector[i] = Instantiate(rightArrow, transform);
+                    vector[i] = Instantiate(rightArrow, canvasParent);
                     break;
                 }
                 case 3:
                 {
-                    vector[i] = Instantiate(leftArrow, transform);
+                    vector[i] = Instantiate(leftArrow, canvasParent);
                     break;
                 }
             }
             vector[i].SetActive(false);
         }
 
-        orderCubeVector = vector;
+        arrowVector = vector;
         SetPositions();
-        foreach (var c in orderCubeVector)
+        foreach (var c in arrowVector)
         {
-            c.GetComponent<CubeOrder>().cubeOrderVector = GetCubeOrderComponents();
+            c.GetComponent<Arrow>().arrowVector = GetArrowComponents();
         }
     }
 
     private void SetPositions()
     {
-        int k;
-        if (numOfOrderCubes == 2) k = 1;
-        else k = 0;
-        for (int i = k; i < orderCubeVector.Length; i++)
+        var offset = 0;
+        if (numOfArrows == 2) offset = offsetBetweenArrows;
+        else offset = 0;
+        for (int i = 0; i < arrowVector.Length; i++)
         {
-            orderCubeVector[i].transform.position = positionsVector[i].position;
+            arrowVector[i].GetComponent<Arrow>().rect.position = new Vector2(positionsVector[i].position.x + offset, positionsVector[i].position.y);
         }
     }
 
-    private CubeOrder[] GetCubeOrderComponents()
+    private Arrow[] GetArrowComponents()
     {
-        CubeOrder[] components = new CubeOrder[numOfOrderCubes];
-        for(int i = 0; i < orderCubeVector.Length; i++)
+        Arrow[] components = new Arrow[numOfArrows];
+        for(int i = 0; i < arrowVector.Length; i++)
         {
-            components[i] = orderCubeVector[i].GetComponent<CubeOrder>();
+            components[i] = arrowVector[i].GetComponent<Arrow>();
         }
 
         return components;

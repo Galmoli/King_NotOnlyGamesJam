@@ -2,50 +2,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class CubeOrder : MonoBehaviour
+public class Arrow : MonoBehaviour
 {
     [SerializeField] private float speed;
 
     private bool onMove;
-
-    public bool instanced;
-
-    public CubeOrder[] cubeOrderVector;
+    [HideInInspector] public RectTransform rect;
+    [HideInInspector] public bool instanced;
+    [FormerlySerializedAs("cubeOrderVector")] [HideInInspector] public Arrow[] arrowVector;
     // Start is called before the first frame update
+
     private void OnEnable()
     {
+        rect = GetComponent<RectTransform>();
         instanced = true;
     }
 
     private void Update()
     {
-        if (!onMove && AreAllCubesInstanced())
+        if (!onMove && AreAllArrowsInstanced())
         {
             onMove = true;
             StartCoroutine(Move());
         }
-        if(transform.position.x >= 28.5) DisableCube();
+        if(transform.position.y <= -180) DisableArrow();
     }
 
     private IEnumerator Move()
     {
         while (onMove)
         {
-            transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
+            rect.position = new Vector2(rect.position.x , rect.position.y - speed * Time.deltaTime);
             yield return null;
         }
     }
 
-    public void DisableCube()
+    public void DisableArrow()
     {
         onMove = false;
         gameObject.SetActive(false);
     }
 
-    private bool AreAllCubesInstanced() //Sees if all cubes are instantiated. It makes them start at the same time.
+    private bool AreAllArrowsInstanced() //Sees if all cubes are instantiated. It makes them start at the same time.
     {
-        foreach (var c in cubeOrderVector)
+        foreach (var c in arrowVector)
         {
             if (!c.instanced) return false;
         }
