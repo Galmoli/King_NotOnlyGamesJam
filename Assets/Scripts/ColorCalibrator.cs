@@ -74,9 +74,9 @@ public class ColorCalibrator : MonoBehaviour
         if (Input.GetButtonDown("A button 2"))
         {
             player2Confirmed = true;
-            PlayerPrefs.SetFloat("RedR", blueFront.r);
-            PlayerPrefs.SetFloat("RedG", blueFront.g);
-            PlayerPrefs.SetFloat("RedB", blueFront.b);
+            PlayerPrefs.SetFloat("RedR", redFront.r);
+            PlayerPrefs.SetFloat("RedG", redFront.g);
+            PlayerPrefs.SetFloat("RedB", redFront.b);
             if(player1Confirmed) LoadGamePlay();
         }
 
@@ -86,6 +86,6 @@ public class ColorCalibrator : MonoBehaviour
 
     private void LoadGamePlay()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

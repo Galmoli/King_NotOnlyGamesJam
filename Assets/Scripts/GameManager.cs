@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     private bool player1PosCorrect;
     private bool player0Checked;
     private bool player1Checked;
+    public Color blueBK;
     public Color blueColor;
+    public Color redBK;
     public Color redColor;
 
     public ComboManager l_comboManager;

@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 80
+  arrow: {fileID: 318621142}
   direction: 3
   rect: {fileID: 0}
   instanced: 0
