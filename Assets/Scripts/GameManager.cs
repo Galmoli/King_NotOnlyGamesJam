@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private bool player1PosCorrect;
     private bool player0Checked;
     private bool player1Checked;
+    public Color blueColor;
+    public Color redColor;
 
     public ComboManager l_comboManager;
 
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         l_comboManager = GetComponent<ComboManager>();
+        GetColors();
     }
 
     public void SetPlayer0State(bool state)
@@ -65,5 +68,11 @@ public class GameManager : MonoBehaviour
     {
         player0Checked = false;
         player1Checked = false;
+    }
+
+    private void GetColors()
+    {
+        blueColor = new Color(PlayerPrefs.GetFloat("BlueR"), PlayerPrefs.GetFloat("BlueG"), PlayerPrefs.GetFloat("BlueB"), 1);
+        redColor = new Color(PlayerPrefs.GetFloat("RedR"), PlayerPrefs.GetFloat("RedG"), PlayerPrefs.GetFloat("RedB"), 1);
     }
 }

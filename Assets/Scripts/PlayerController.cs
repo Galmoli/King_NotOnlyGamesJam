@@ -61,11 +61,6 @@ public class PlayerController : MonoBehaviour
         player0CurrentArrow = player1;
         player1CurrentArrow = player2;
     }
-    private void FourPlayers()
-    {
-        player0.gameObject.SetActive(true);
-        player3.gameObject.SetActive(true);
-    }
 
     private void SetArrowDir(Image image, ArrowDirection dir)
     {
