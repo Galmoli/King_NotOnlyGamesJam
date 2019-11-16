@@ -42,7 +42,6 @@ public class ComboManager : MonoBehaviour
         if (initialShakeDuration > 0)
         {
             cameraTransform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
-            Debug.Log(transform.localPosition);
             initialShakeDuration -= Time.deltaTime * dampingSpeed;
         }
         else
@@ -55,7 +54,6 @@ public class ComboManager : MonoBehaviour
     public void MoreCombos()
     {
         comboRacha++;
-        Debug.Log(comboRacha);
     }
 
     public void YouFailed()

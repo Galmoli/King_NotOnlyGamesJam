@@ -387,6 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 282200009}
   - component: {fileID: 282200008}
+  - component: {fileID: 282200010}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -406,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80512e5bdab92ba4cbc57677b904317e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  l_comboManager: {fileID: 0}
+  l_comboManager: {fileID: 282200010}
 --- !u!4 &282200009
 Transform:
   m_ObjectHideFlags: 0
@@ -421,6 +422,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282200010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282200007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd26c2638d7c9840be33e8a5980f818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pController: {fileID: 0}
+  gManager: {fileID: 0}
+  comboWords: []
+  cameraTransform: {fileID: 963194228}
+  initialShakeDuration: 0.25
+  shakeMagnitude: 0.7
+  dampingSpeed: 1
 --- !u!1 &339955533
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,7 +933,7 @@ MonoBehaviour:
   initialSpawnTime: 3
   minSpawnTime: 2
   spawnTimeDecrement: 0.2
-  offsetBetweenArrows: 33
+  offsetBetweenArrows: 0
   upArrow: {fileID: 3751920606560277072, guid: 0f506eec4a3b14e43a20264bd57be976, type: 3}
   downArrow: {fileID: 2650322207883981757, guid: bfa93d93d770048449b856fe254a2097,
     type: 3}
