@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static Action OnCorrectPos = delegate { };
+    public static Action OnIncorrectPos = delegate { };
+    
     private static GameManager instance;
     private bool player0PosCorrect;
     private bool player1PosCorrect;
@@ -54,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void CorrectPos()
     {
+        OnCorrectPos();
         Debug.Log("<color=green> Correct Pos </color>");
         l_comboManager.MoreCombos();
         CleanPos();
@@ -61,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void IncorrectPos()
     {
+        OnIncorrectPos();
         Debug.Log("<color=red> Incorrect Pos </color>");
         l_comboManager.YouFailed();
         CleanPos();
