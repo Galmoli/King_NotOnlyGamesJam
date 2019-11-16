@@ -5,8 +5,8 @@ using UnityEngine.Serialization;
 
 public class SpawnerController : MonoBehaviour
 {
+    public int numOfArrows = 2;
     [SerializeField] private Transform canvasParent;
-    [SerializeField] private int numOfArrows = 2;
     [SerializeField] private float initialSpawnTime = 4;
     [SerializeField] private float minSpawnTime = 2;
     [SerializeField] private float spawnTimeDecrement = 0.1f;
@@ -103,7 +103,9 @@ public class SpawnerController : MonoBehaviour
         else offset = 0;
         for (int i = 0; i < arrowVector.Length; i++)
         {
-            arrowVector[i].GetComponent<Arrow>().rect.position = new Vector2(positionsVector[i].position.x + offset, positionsVector[i].position.y);
+            var arrow = arrowVector[i].GetComponent<Arrow>();
+            arrow.rect.position = new Vector2(positionsVector[i].position.x + offset, positionsVector[i].position.y);
+            arrow.SetPlayer(i);
         }
     }
 

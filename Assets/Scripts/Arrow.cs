@@ -2,16 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Arrow : MonoBehaviour
 {
     [SerializeField] private float speed;
-
+    [SerializeField] private PlayerController.ArrowDirection direction;
     private bool onMove;
+    private int playerInt;
     [HideInInspector] public RectTransform rect;
     [HideInInspector] public bool instanced;
-    [FormerlySerializedAs("cubeOrderVector")] [HideInInspector] public Arrow[] arrowVector;
+    [HideInInspector] public Arrow[] arrowVector;
     // Start is called before the first frame update
 
     private void OnEnable()
@@ -27,7 +27,20 @@ public class Arrow : MonoBehaviour
             onMove = true;
             StartCoroutine(Move());
         }
-        if(transform.position.y <= -180) DisableArrow();
+        if(transform.localPosition.y <= -130) 
+        {
+            if (playerInt == 0)
+            {
+                if(direction == PlayerController.Instance.GetPlayer0Dir()) GameManager.Instance.SetPlayer0State(true);    
+                else GameManager.Instance.SetPlayer0State(false);
+            }
+            if (playerInt == 1)
+            {
+                if(direction == PlayerController.Instance.GetPlayer1Dir()) GameManager.Instance.SetPlayer1State(true);
+                else GameManager.Instance.SetPlayer1State(false);
+            }
+            DisableArrow();
+        }
     }
 
     private IEnumerator Move()
@@ -39,7 +52,7 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    public void DisableArrow()
+    private void DisableArrow()
     {
         onMove = false;
         gameObject.SetActive(false);
@@ -52,5 +65,10 @@ public class Arrow : MonoBehaviour
             if (!c.instanced) return false;
         }
         return true;
+    }
+
+    public void SetPlayer(int n)
+    {
+        playerInt = n;
     }
 }

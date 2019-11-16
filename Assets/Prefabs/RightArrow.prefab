@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 80
+  direction: 2
   rect: {fileID: 0}
   instanced: 0
-  cubeOrderVector: []
+  arrowVector: []
