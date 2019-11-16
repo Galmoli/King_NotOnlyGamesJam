@@ -12,6 +12,14 @@ public class ColorCalibrator : MonoBehaviour
     [SerializeField] private Image redFrontImg;
     [SerializeField] private Image blueFrontFill;
     [SerializeField] private Image redFrontFill;
+
+    [SerializeField] private GameObject reset1B;
+    [SerializeField] private GameObject accept1B;
+    [SerializeField] private GameObject ready1B;
+    [SerializeField] private GameObject reset2B;
+    [SerializeField] private GameObject accept2B;
+    [SerializeField] private GameObject ready2B;
+    
     private Color defaultBlue;
     private Color defaultRed;
 
@@ -51,29 +59,35 @@ public class ColorCalibrator : MonoBehaviour
             redFrontFill.fillAmount -= 0.01f;
         }
 
-        if (Input.GetButtonDown("Y button 1"))
+        if (hinput.gamepad[0].Y.justPressed)
         {
             blueFront = defaultBlue;
             blueFrontFill.fillAmount = 0.5f;
         }
 
-        if (Input.GetButtonDown("Y button 2"))
+        if (hinput.gamepad[1].Y.justPressed)
         {
             redFront = defaultRed;
             redFrontFill.fillAmount = 0.5f;
         }
 
-        if (Input.GetButtonDown("A button 1"))
+        if (hinput.gamepad[0].A.justPressed)
         {
             player1Confirmed = true;
+            reset1B.SetActive(false);
+            accept1B.SetActive(false);
+            ready1B.SetActive(true);
             PlayerPrefs.SetFloat("BlueR", blueFront.r);
             PlayerPrefs.SetFloat("BlueG", blueFront.g);
             PlayerPrefs.SetFloat("BlueB", blueFront.b);
             if (player2Confirmed) LoadGamePlay();
         }
-        if (Input.GetButtonDown("A button 2"))
+        if (hinput.gamepad[1].A.justPressed)
         {
             player2Confirmed = true;
+            reset2B.SetActive(false);
+            accept2B.SetActive(false);
+            ready2B.SetActive(true);
             PlayerPrefs.SetFloat("RedR", redFront.r);
             PlayerPrefs.SetFloat("RedG", redFront.g);
             PlayerPrefs.SetFloat("RedB", redFront.b);
