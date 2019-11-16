@@ -12,6 +12,7 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] private float spawnTimeDecrement = 0.1f; //Each time an arrow spawns it decrements this value.
     [SerializeField] private float decrementOnWinStreak = 0.5f; //Every 3 times wins in a row it decrements this value.
     [SerializeField] private float incrementOnLoseStreak = 0.6f; //Every 3 loses in a row it increments this value.
+    [SerializeField] private float maxDelay = 0.6f; //Every 3 loses in a row it increments this value.
     [SerializeField] private int offsetBetweenArrows = 33;
 
     //Prefabs
@@ -70,8 +71,15 @@ public class SpawnerController : MonoBehaviour
     {
         foreach (var go in arrowVector)
         {
-            go.SetActive(true);
+            var delay = Random.Range(0, maxDelay);
+            StartCoroutine(SpawnDelay(go, delay));
         }
+    }
+
+    private IEnumerator SpawnDelay(GameObject go, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        go.SetActive(true);
     }
 
     private void GetNextArrowVector()
