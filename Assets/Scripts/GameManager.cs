@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static Action OnCorrectPos = delegate { };
     public static Action OnIncorrectPos = delegate { };
 
-    [SerializeField] private float gameLength = 80f;
+    [SerializeField] private float gameLength = 60f;
     private float currentGameTime = 0;
     private static GameManager instance;
     private bool player0PosCorrect;
@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
 
     public ComboManager l_comboManager;
     [SerializeField] private Animator playerAnim;
-
     public Animator cameraAnim;
 
     public static GameManager Instance
@@ -46,7 +45,7 @@ public class GameManager : MonoBehaviour
         currentGameTime += Time.deltaTime;
         if (currentGameTime >= gameLength)
         {
-            StartCoroutine(ChangeScene());          
+            StartCoroutine(ChangeScene());
         }
     }
 
