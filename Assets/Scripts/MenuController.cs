@@ -11,12 +11,15 @@ public class MenuController : MonoBehaviour
     [SerializeField] private AudioClip menuSelected;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Image fadeImage;
+    [SerializeField] private GameObject player;
     [SerializeField] private float changeSceneDelay = 0.6f;
+    private Animator anim;
 
     private bool newGameSelected;
     // Start is called before the first frame update
     void Start()
     {
+        anim = player.GetComponent<Animator>();
         newGameSelected = true;
     }
 
@@ -41,6 +44,7 @@ public class MenuController : MonoBehaviour
         {
             if (newGameSelected)
             {
+                anim.SetBool("Ready", true);
                 audioSource.PlayOneShot(menuSelected);
                 StartCoroutine(ChangeScene());
             }
@@ -53,8 +57,8 @@ public class MenuController : MonoBehaviour
         yield return new WaitForSeconds(changeSceneDelay);
         while (fadeImage.color.a < 1)
         {
-            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a + 0.8f * Time.deltaTime);
-            audioSource.volume -= 0.8f * Time.deltaTime;
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a + 1f * Time.deltaTime);
+            audioSource.volume -= 1f * Time.deltaTime;
             yield return null;
         }
         SceneManager.LoadScene(1);

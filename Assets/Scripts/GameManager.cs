@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         l_comboManager = GetComponent<ComboManager>();
-        //GetColors();
+        GetColors();
     }
 
     public void SetPlayer0State(bool state)
