@@ -35,8 +35,10 @@ public class ComboManager : MonoBehaviour
     public GameObject highParticles;
 
     //PlayerMat
-    public Material material;
+    public Material material1;
+    public Material material2;
     public SkinnedMeshRenderer skinMeshRenderer;
+    public ParticleSystem particlesHand;
 
     private void Awake()
     {
@@ -50,6 +52,7 @@ public class ComboManager : MonoBehaviour
         comboRacha = 0;
         cooldownAnnouncers = 0;
         GameManager.OnCorrectPos += PlayParticles;
+        GameManager.OnIncorrectPos += YouFailed;
     }
 
     // Update is called once per frame
@@ -145,10 +148,25 @@ public class ComboManager : MonoBehaviour
         comboRacha = 0;
         errorSound.Play();
         initialShakeDuration = 0.25f;
+        StartCoroutine(PlayerFail());
     }
 
     private void OnDestroy()
     {
         GameManager.OnCorrectPos -= PlayParticles;
+        GameManager.OnIncorrectPos -= YouFailed;
+    }
+
+    private IEnumerator PlayerFail()
+    {
+        particlesHand.Stop();
+        skinMeshRenderer.material = material2;
+        yield return new WaitForSeconds(0.5f);
+        skinMeshRenderer.material = material1;
+        yield return new WaitForSeconds(0.1f);
+        skinMeshRenderer.material = material2;
+        yield return new WaitForSeconds(0.2f);
+        skinMeshRenderer.material = material1;
+        particlesHand.Play();
     }
 }

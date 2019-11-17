@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public ComboManager l_comboManager;
     [SerializeField] private Animator playerAnim;
+    public Animator cameraAnim;
 
     public static GameManager Instance
     {
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
         currentGameTime += Time.deltaTime;
         if (currentGameTime >= gameLength)
         {
-            SceneManager.LoadScene(4);
+            StartCoroutine(ChangeScene());
         }
     }
 
@@ -96,5 +97,12 @@ public class GameManager : MonoBehaviour
     {
         blueColor = new Color(PlayerPrefs.GetFloat("BlueR"), PlayerPrefs.GetFloat("BlueG"), PlayerPrefs.GetFloat("BlueB"), 1);
         redColor = new Color(PlayerPrefs.GetFloat("RedR"), PlayerPrefs.GetFloat("RedG"), PlayerPrefs.GetFloat("RedB"), 1);
+    }
+
+    private IEnumerator ChangeScene()
+    {
+        cameraAnim.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(4);
     }
 }
