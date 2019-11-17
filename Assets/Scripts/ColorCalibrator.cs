@@ -40,22 +40,22 @@ public class ColorCalibrator : MonoBehaviour
     {
         if (Input.GetAxis("Joystick1Horizontal") > 0.1f)
         {
-            blueFront = new Color(Mathf.Clamp(blueFront.r +0.01f, 0.588f, 1), blueFront.g, blueFront.b, blueFront.a);
+            blueFront = new Color(Mathf.Clamp(blueFront.r +0.01f, 0.502f, 0.784f), blueFront.g, blueFront.b, blueFront.a);
             blueFrontFill.fillAmount += 0.01f;
         }
         if (Input.GetAxis("Joystick1Horizontal") < -0.1f)
         {
-            blueFront = new Color(Mathf.Clamp(blueFront.r - 0.01f, 0.588f, 1), blueFront.g, blueFront.b, blueFront.a);
+            blueFront = new Color(Mathf.Clamp(blueFront.r - 0.01f, 0.502f, 0.784f), blueFront.g, blueFront.b, blueFront.a);
             blueFrontFill.fillAmount -= 0.01f;
         }
         if (Input.GetAxis("Joystick2Horizontal") > 0.1f)
         {
-            redFront = new Color(redFront.r, redFront.g, Mathf.Clamp(redFront.b + 0.01f, 0.392f, 0.588f), redFront.a);
+            redFront = new Color(redFront.r, redFront.g, Mathf.Clamp(redFront.b + 0.01f, 0.427f, 0.667f), redFront.a);
             redFrontFill.fillAmount += 0.01f;
         }
         if (Input.GetAxis("Joystick2Horizontal") < -0.1f)
         {
-            redFront = new Color(redFront.r, redFront.g, Mathf.Clamp(redFront.b - 0.01f, 0.392f, 0.588f), redFront.a);
+            redFront = new Color(redFront.r, redFront.g, Mathf.Clamp(redFront.b - 0.01f, 0.427f, 0.667f), redFront.a);
             redFrontFill.fillAmount -= 0.01f;
         }
 

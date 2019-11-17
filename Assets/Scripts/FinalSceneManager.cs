@@ -20,7 +20,7 @@ public class FinalSceneManager : MonoBehaviour
     {
         if (hinput.anyGamepad.A.justPressed)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
     }
 }
