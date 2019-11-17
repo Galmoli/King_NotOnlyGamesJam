@@ -34,6 +34,10 @@ public class ComboManager : MonoBehaviour
     public GameObject midParticles;
     public GameObject highParticles;
 
+    //PlayerMat
+    public Material material;
+    public SkinMeshRenderer skinMeshRenderer;
+
     private void Awake()
     {
         initialPosition = cameraTransform.localPosition;
