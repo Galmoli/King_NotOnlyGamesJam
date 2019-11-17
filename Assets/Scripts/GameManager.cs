@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Color redColor;
 
     public ComboManager l_comboManager;
+    [SerializeField] private Animator playerAnim;
 
     public static GameManager Instance
     {
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
     private void CorrectPos()
     {
         OnCorrectPos();
+        playerAnim.SetTrigger("Success");
         l_comboManager.MoreCombos();
         CleanPos();
     }
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
     private void IncorrectPos()
     {
         OnIncorrectPos();
+        playerAnim.SetTrigger("Fail");
         hinput.anyGamepad.Vibrate();
         l_comboManager.YouFailed();
         CleanPos();
