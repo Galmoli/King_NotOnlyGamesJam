@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class ComboManager : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class ComboManager : MonoBehaviour
     public GameObject[] comboWords;
     private float cooldownAnnouncers = 0;
     public float cooldownMultipliers = 0;
+    public AudioSource errorSound;
+    public AudioSource correctSound;
 
     //Highscore
     [HideInInspector] public float highScore = 0;
@@ -30,6 +34,12 @@ public class ComboManager : MonoBehaviour
     public GameObject midParticles;
     public GameObject highParticles;
 
+    //PlayerMat
+    public Material material1;
+    public Material material2;
+    public SkinnedMeshRenderer skinMeshRenderer;
+    public ParticleSystem particlesHand;
+
     private void Awake()
     {
         initialPosition = cameraTransform.localPosition;
@@ -42,6 +52,7 @@ public class ComboManager : MonoBehaviour
         comboRacha = 0;
         cooldownAnnouncers = 0;
         GameManager.OnCorrectPos += PlayParticles;
+        GameManager.OnIncorrectPos += YouFailed;
     }
 
     // Update is called once per frame
@@ -53,7 +64,6 @@ public class ComboManager : MonoBehaviour
         if (cooldownAnnouncers > 0)
         {
             cooldownAnnouncers -= Time.deltaTime;
-            Debug.Log(cooldownAnnouncers);
             if (cooldownAnnouncers < 0)
             {
                 cooldownAnnouncers = 0;
@@ -79,6 +89,7 @@ public class ComboManager : MonoBehaviour
 
     void PlayParticles()
     {
+        PlayerPrefs.SetInt("Score", Convert.ToInt32(highScore));
         if (comboRacha < 2)
         {
             lowParticles.SetActive(false);
@@ -98,6 +109,7 @@ public class ComboManager : MonoBehaviour
 
     public void MoreCombos()
     {
+        if (!correctSound.isPlaying) correctSound.Play();
         comboRacha++;
         if (comboWords.Length - 1 < comboRacha) comboRacha = comboWords.Length - 1;
         highScore += comboRacha * highScoreMultiplier;
@@ -134,7 +146,27 @@ public class ComboManager : MonoBehaviour
     public void YouFailed()
     {
         comboRacha = 0;
-        Debug.Log("Awful :(");
+        errorSound.Play();
         initialShakeDuration = 0.25f;
+        StartCoroutine(PlayerFail());
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnCorrectPos -= PlayParticles;
+        GameManager.OnIncorrectPos -= YouFailed;
+    }
+
+    private IEnumerator PlayerFail()
+    {
+        particlesHand.Stop();
+        skinMeshRenderer.material = material2;
+        yield return new WaitForSeconds(0.5f);
+        skinMeshRenderer.material = material1;
+        yield return new WaitForSeconds(0.1f);
+        skinMeshRenderer.material = material2;
+        yield return new WaitForSeconds(0.2f);
+        skinMeshRenderer.material = material1;
+        particlesHand.Play();
     }
 }

@@ -14,6 +14,8 @@ public class SpawnerController : MonoBehaviour
     [SerializeField] private float incrementOnLoseStreak = 0.6f; //Every 3 loses in a row it increments this value.
     [SerializeField] private float maxDelay = 0.6f; //Every 3 loses in a row it increments this value.
     [SerializeField] private int offsetBetweenArrows = 33;
+    public float initialArrowSpeed = 300;
+    public float speedIncremental =  50;
 
     //Prefabs
     [SerializeField] private GameObject upArrow;
@@ -49,11 +51,13 @@ public class SpawnerController : MonoBehaviour
         if (winStreak == 3)
         {
             if(spawnTime > minSpawnTime + decrementOnWinStreak) spawnTime -= decrementOnWinStreak;
+            initialArrowSpeed += speedIncremental;
             winStreak = 0;
         }
         if (loseStreak == 3)
         {
             if(spawnTime < initialSpawnTime - incrementOnLoseStreak) spawnTime += incrementOnLoseStreak;
+            initialArrowSpeed -= speedIncremental;
             loseStreak = 0;
         }
         
@@ -131,6 +135,7 @@ public class SpawnerController : MonoBehaviour
         for (int i = 0; i < arrowVector.Length; i++)
         {
             var arrow = arrowVector[i].GetComponent<Arrow>();
+            arrow.SetArrowVelocity(initialArrowSpeed);
             arrow.rect.position = new Vector2(positionsVector[i].position.x + offset, positionsVector[i].position.y);
             arrow.SetPlayer(i);
         }
@@ -157,5 +162,11 @@ public class SpawnerController : MonoBehaviour
     {
         winStreak = 0;
         loseStreak++;
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.OnCorrectPos -= OnCorrect;
+        GameManager.OnIncorrectPos -= OnIncorrect;
     }
 }
