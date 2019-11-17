@@ -2795,7 +2795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueFront: {r: 0.80392164, g: 0.47058827, b: 0.9960785, a: 1}
-  redFront: {r: 1, g: 0.5411765, b: 0.5882353, a: 1}
+  redFront: {r: 1, g: 0.30980393, b: 0.38823533, a: 1}
   blueFrontImg: {fileID: 80755645}
   redFrontImg: {fileID: 430756457}
   blueFrontFill: {fileID: 235143769}
