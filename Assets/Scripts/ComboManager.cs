@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class ComboManager : MonoBehaviour
 {
@@ -79,6 +81,7 @@ public class ComboManager : MonoBehaviour
 
     void PlayParticles()
     {
+        PlayerPrefs.SetInt("Score", Convert.ToInt32(highScore));
         if (comboRacha < 2)
         {
             lowParticles.SetActive(false);

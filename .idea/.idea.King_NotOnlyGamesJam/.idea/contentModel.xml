@@ -51,6 +51,7 @@
           <e p="Arrow.cs" t="Include" />
           <e p="ColorCalibrator.cs" t="Include" />
           <e p="ComboManager.cs" t="Include" />
+          <e p="FinalSceneManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="InputManagerTests.cs" t="Include" />
           <e p="MenuController.cs" t="Include" />
