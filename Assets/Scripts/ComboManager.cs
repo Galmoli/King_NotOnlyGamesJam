@@ -15,6 +15,7 @@ public class ComboManager : MonoBehaviour
     private float cooldownAnnouncers = 0;
     public float cooldownMultipliers = 0;
     public AudioSource errorSound;
+    public AudioSource correctSound;
 
     //Highscore
     [HideInInspector] public float highScore = 0;
@@ -56,7 +57,6 @@ public class ComboManager : MonoBehaviour
         if (cooldownAnnouncers > 0)
         {
             cooldownAnnouncers -= Time.deltaTime;
-            Debug.Log(cooldownAnnouncers);
             if (cooldownAnnouncers < 0)
             {
                 cooldownAnnouncers = 0;
@@ -102,6 +102,7 @@ public class ComboManager : MonoBehaviour
 
     public void MoreCombos()
     {
+        if (!correctSound.isPlaying) correctSound.Play();
         comboRacha++;
         if (comboWords.Length - 1 < comboRacha) comboRacha = comboWords.Length - 1;
         highScore += comboRacha * highScoreMultiplier;
