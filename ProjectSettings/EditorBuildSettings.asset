@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: e9fbb1d800da5654f89da99222343141
+  - enabled: 1
     path: Assets/Scenes/ColorCalibrator.unity
     guid: bc685d0e449d41e49989a8fe9c5c52ff
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
     path: Assets/Scenes/Environment.unity
     guid: f1cb2cc0b69cc0145a7fc29bdc6026dd
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

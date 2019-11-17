@@ -4,8 +4,44 @@
     <e p="C:\Users\iastr\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\iastr\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_King_NotOnlyGamesJam.-811077737.00" t="ExcludeRecursive" />
     <e p="C:\Users\iastr\Documents\GitHub\King_NotOnlyGamesJam" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="hinput" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="Gamepad" t="Include">
+              <e p="hAnyInput.cs" t="Include" />
+              <e p="hAxis.cs" t="Include" />
+              <e p="hButton.cs" t="Include" />
+              <e p="hDirection.cs" t="Include" />
+              <e p="hGamepad.cs" t="Include" />
+              <e p="hPressable.cs" t="Include" />
+              <e p="hStick.cs" t="Include" />
+              <e p="hStickPressedZone.cs" t="Include" />
+              <e p="hTrigger.cs" t="Include" />
+              <e p="hVibration.cs" t="Include" />
+            </e>
+            <e p="Setup" t="Include">
+              <e p="hSetUp.cs" t="Include" />
+            </e>
+            <e p="Utils" t="Include">
+              <e p="hinput.cs" t="Include" />
+              <e p="hSettings.cs" t="Include" />
+              <e p="hUpdater.cs" t="Include" />
+              <e p="hUtils.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Hologram" t="Include">
+          <e p="Editor" t="Include">
+            <e p="Foldout.cs" t="Include" />
+            <e p="HologramShaderGUI.cs" t="Include" />
+            <e p="Layout.cs" t="Include" />
+          </e>
+          <e p="Shader" t="Include">
+            <e p="Hologram.shader" t="Include" />
+          </e>
+        </e>
         <e p="Lava shader" t="Include">
           <e p="Lava shader" t="Include">
             <e p="Lava.shader" t="Include" />
@@ -17,6 +53,7 @@
           <e p="ComboManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="InputManagerTests.cs" t="Include" />
+          <e p="MenuController.cs" t="Include" />
           <e p="MusicManager.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="SpawnerController.cs" t="Include" />
