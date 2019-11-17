@@ -9,7 +9,7 @@ public class ComboManager : MonoBehaviour
     //Gestio del combo
     public int comboRacha;
     private int comboAnnouncers;
-    public Image[] comboWords;
+    public GameObject[] comboWords;
     private float cooldownAnnouncers = 0;
     public float cooldownMultipliers = 0;
 
@@ -25,6 +25,11 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private float dampingSpeed = 1.0f;
     Vector3 initialPosition;
 
+    //Particles
+    public GameObject lowParticles;
+    public GameObject midParticles;
+    public GameObject highParticles;
+
     private void Awake()
     {
         initialPosition = cameraTransform.localPosition;
@@ -36,6 +41,7 @@ public class ComboManager : MonoBehaviour
     {
         comboRacha = 0;
         cooldownAnnouncers = 0;
+        GameManager.OnCorrectPos += PlayParticles;
     }
 
     // Update is called once per frame
@@ -51,9 +57,9 @@ public class ComboManager : MonoBehaviour
             if (cooldownAnnouncers < 0)
             {
                 cooldownAnnouncers = 0;
-                for (int i = 0; i < comboWords.Length - 1; i++)
+                for (int i = 0; i < comboWords.Length; i++)
                 {
-                    comboWords[i].enabled = false;
+                    comboWords[i].SetActive(false);
                 }
             }
         }
@@ -71,41 +77,56 @@ public class ComboManager : MonoBehaviour
         }
     }
 
+    void PlayParticles()
+    {
+        if (comboRacha < 2)
+        {
+            lowParticles.SetActive(false);
+            lowParticles.SetActive(true);
+        }
+        else if (comboRacha < 4)
+        {
+            midParticles.SetActive(false);
+            midParticles.SetActive(true);
+        }
+        else
+        {
+            highParticles.SetActive(false);
+            highParticles.SetActive(true);
+        }
+    }
+
     public void MoreCombos()
     {
         comboRacha++;
         if (comboWords.Length - 1 < comboRacha) comboRacha = comboWords.Length - 1;
         highScore += comboRacha * highScoreMultiplier;
         highScoreText.text = highScore.ToString();
-        switch (comboRacha)
+        switch (Random.Range(1,7))
         {
-            case 0:
-                break;
             case 1:
-                comboWords[0].enabled = true; //És important que cadascun d'aquests objectes tingui un script que faci que image enabled = false despres d'un temps d'estar enabled.
+                comboWords[0].SetActive(true); //És important que cadascun d'aquests objectes tingui un script que faci que image enabled = false despres d'un temps d'estar enabled.
                 cooldownAnnouncers = cooldownMultipliers;
                 break;
             case 2:
-                comboWords[1].enabled = true;
+                comboWords[1].SetActive(true);
                 cooldownAnnouncers = cooldownMultipliers;
                 break;
             case 3:
-                comboWords[2].enabled = true;
+                comboWords[2].SetActive(true);
                 cooldownAnnouncers = cooldownMultipliers;
                 break;
             case 4:
-                comboWords[3].enabled = true;
-                cooldownAnnouncers = cooldownMultipliers * 1.5f;
+                comboWords[3].SetActive(true);
+                cooldownAnnouncers = cooldownMultipliers; //* 1.5f;
                 break;
             case 5:
-                comboWords[4].enabled = true;
-                cooldownAnnouncers = cooldownMultipliers * 1.5f;
-                break;
-            case 6:
-                comboWords[5].enabled = true;
-                cooldownAnnouncers = cooldownMultipliers * 2f;
+                comboWords[4].SetActive(true);
+                cooldownAnnouncers = cooldownMultipliers;// * 1.5f;
                 break;
             default:
+                comboWords[5].SetActive(true);
+                cooldownAnnouncers = cooldownMultipliers;// * 2f;
                 break;
         }
     }
