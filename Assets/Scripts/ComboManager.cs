@@ -14,6 +14,7 @@ public class ComboManager : MonoBehaviour
     public GameObject[] comboWords;
     private float cooldownAnnouncers = 0;
     public float cooldownMultipliers = 0;
+    public AudioSource errorSound;
 
     //Highscore
     [HideInInspector] public float highScore = 0;
@@ -137,7 +138,7 @@ public class ComboManager : MonoBehaviour
     public void YouFailed()
     {
         comboRacha = 0;
-        Debug.Log("Awful :(");
+        errorSound.Play();
         initialShakeDuration = 0.25f;
     }
 }
