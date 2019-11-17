@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    private float speed;
     [SerializeField] private GameObject arrow;
     [SerializeField] private PlayerController.ArrowDirection direction;
     private bool onMove;
@@ -82,5 +82,10 @@ public class Arrow : MonoBehaviour
             GetComponent<Image>().color = GameManager.Instance.redBK;
             arrow.GetComponent<Image>().color = GameManager.Instance.redColor;
         }
+    }
+
+    public void SetArrowVelocity(float speed)
+    {
+        this.speed = speed;
     }
 }

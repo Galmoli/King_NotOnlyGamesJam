@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static Action OnCorrectPos = delegate { };
     public static Action OnIncorrectPos = delegate { };
 
-    [SerializeField] private float gameLength = 80f;
+    [SerializeField] private float gameLength = 60f;
     private float currentGameTime = 0;
     private static GameManager instance;
     private bool player0PosCorrect;

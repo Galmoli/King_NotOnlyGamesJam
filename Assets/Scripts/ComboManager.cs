@@ -36,7 +36,7 @@ public class ComboManager : MonoBehaviour
 
     //PlayerMat
     public Material material;
-    public SkinMeshRenderer skinMeshRenderer;
+    public SkinnedMeshRenderer skinMeshRenderer;
 
     private void Awake()
     {
@@ -145,5 +145,10 @@ public class ComboManager : MonoBehaviour
         comboRacha = 0;
         errorSound.Play();
         initialShakeDuration = 0.25f;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnCorrectPos -= PlayParticles;
     }
 }

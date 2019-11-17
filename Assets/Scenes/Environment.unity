@@ -56286,6 +56286,8 @@ MonoBehaviour:
   lowParticles: {fileID: 1663599682}
   midParticles: {fileID: 1767350886}
   highParticles: {fileID: 1839722000}
+  material: {fileID: 0}
+  skinMeshRenderer: {fileID: 0}
 --- !u!114 &1372856251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56300,9 +56302,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameLength: 80
   blueBK: {r: 0.25943398, g: 0.4728479, b: 1, a: 1}
-  blueColor: {r: 0.8039216, g: 0.47058827, b: 0.9960785, a: 1}
-  redBK: {r: 1, g: 0.5882353, b: 0, a: 1}
-  redColor: {r: 1, g: 0.5882353, b: 0.5372549, a: 1}
+  blueColor: {r: 0.50055665, g: 0.4761481, b: 0.9433962, a: 1}
+  redBK: {r: 1, g: 0.36122647, b: 0.13679248, a: 1}
+  redColor: {r: 1, g: 0.3137255, b: 0.42745098, a: 1}
   l_comboManager: {fileID: 1372856250}
   playerAnim: {fileID: 1388068794}
 --- !u!4 &1372856252
