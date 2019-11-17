@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static Action OnCorrectPos = delegate { };
     public static Action OnIncorrectPos = delegate { };
-    
+
+    [SerializeField] private float gameLength = 80f;
+    private float currentGameTime = 0;
     private static GameManager instance;
     private bool player0PosCorrect;
     private bool player1PosCorrect;
@@ -33,6 +36,15 @@ public class GameManager : MonoBehaviour
     {
         l_comboManager = GetComponent<ComboManager>();
         GetColors();
+    }
+
+    private void Update()
+    {
+        currentGameTime += Time.deltaTime;
+        if (currentGameTime >= gameLength)
+        {
+            SceneManager.LoadScene(4);
+        }
     }
 
     public void SetPlayer0State(bool state)
