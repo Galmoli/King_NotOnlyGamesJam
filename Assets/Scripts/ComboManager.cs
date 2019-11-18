@@ -89,7 +89,6 @@ public class ComboManager : MonoBehaviour
 
     void PlayParticles()
     {
-        PlayerPrefs.SetInt("Score", Convert.ToInt32(highScore));
         if (comboRacha < 2)
         {
             lowParticles.SetActive(false);
@@ -153,6 +152,7 @@ public class ComboManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        PlayerPrefs.SetInt("Score", Convert.ToInt32(highScore));
         GameManager.OnCorrectPos -= PlayParticles;
         GameManager.OnIncorrectPos -= YouFailed;
     }

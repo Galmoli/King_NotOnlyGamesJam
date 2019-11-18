@@ -59,19 +59,19 @@ public class ColorCalibrator : MonoBehaviour
             redFrontFill.fillAmount -= 0.01f;
         }
 
-        if (hinput.gamepad[0].Y.justPressed)
+        if (hinput.gamepad[0].Y.justPressed || Input.GetKeyDown(KeyCode.R))
         {
             blueFront = defaultBlue;
             blueFrontFill.fillAmount = 0.5f;
         }
 
-        if (hinput.gamepad[1].Y.justPressed)
+        if (hinput.gamepad[1].Y.justPressed || Input.GetKeyDown(KeyCode.Backspace))
         {
             redFront = defaultRed;
             redFrontFill.fillAmount = 0.5f;
         }
 
-        if (hinput.gamepad[0].A.justPressed)
+        if (hinput.gamepad[0].A.justPressed || Input.GetKeyDown(KeyCode.Q))
         {
             player1Confirmed = true;
             reset1B.SetActive(false);
@@ -82,7 +82,7 @@ public class ColorCalibrator : MonoBehaviour
             PlayerPrefs.SetFloat("BlueB", blueFront.b);
             if (player2Confirmed) LoadGamePlay();
         }
-        if (hinput.gamepad[1].A.justPressed)
+        if (hinput.gamepad[1].A.justPressed || Input.GetKeyDown(KeyCode.Return))
         {
             player2Confirmed = true;
             reset2B.SetActive(false);
