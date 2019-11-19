@@ -18,7 +18,7 @@ public class FinalSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hinput.anyGamepad.A.justPressed)
+        if (hinput.anyGamepad.A.justPressed || Input.GetKeyDown(KeyCode.Return))
         {
             SceneManager.LoadScene(0);
         }
